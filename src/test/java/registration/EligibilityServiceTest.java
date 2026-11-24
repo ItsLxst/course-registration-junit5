@@ -1,8 +1,9 @@
 package registration;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class EligibilityServiceTest {
     private final EligibilityService service = new EligibilityService();
@@ -49,6 +50,21 @@ class EligibilityServiceTest {
         Course course = new Course("SWE201", 30);
 
         assertFalse(service.isEligible(student, course));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "SWE101, true",
+            "SWE102, false",
+            "swe101, false"
+    })
+    void eligibilityDependsOnCompletedCourse(String completed, boolean expected) {
+        Student student = new Student("20231234", "Ayse");
+        student.getCompletedCourses().add(completed);
+        Course course = new Course("SWE201", 30);
+        course.getPrerequisites().add("SWE101");
+
+        assertEquals(expected, service.isEligible(student, course));
     }
 
 }
