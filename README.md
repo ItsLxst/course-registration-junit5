@@ -25,13 +25,13 @@ mvn test -Dtest=ValidatorTest
 
 ## Project areas
 
-| Member | Area | Code | Tests |
-|---|---|---|---|
-| 1 | Student ID and course code validation | `Validator` | `ValidatorTest`, `ValidatorRegressionTest` |
-| 2 | Enrollment eligibility and prerequisites | `EligibilityService` | `EligibilityServiceTest` |
-| 3 | Course capacity and duplicate enrollment | `CapacityService` | |
-| 4 | Course withdrawal | `WithdrawalService` | `WithdrawalServiceTest` |
-| 5 | Waitlist and promotion | `WaitlistService` | |
+| Member | Name | Area | Code | Tests |
+|---|---|---|---|---|
+| 1 | Yasser Aji | Student ID and course code validation | `Validator` | `ValidatorTest`, `ValidatorRegressionTest` |
+| 2 | Göknil Bilge | Enrollment eligibility and prerequisites | `EligibilityService` | `EligibilityServiceTest` |
+| 3 | Deo Gratias| Course capacity and duplicate enrollment | `CapacityService` | |
+| 4 | Furkan Kındığılı | Course withdrawal | `WithdrawalService` | `WithdrawalServiceTest` |
+| 5 |  Mohammad Alnajjar| Waitlist and promotion | `WaitlistService` | |
 
 Test design for each area is in `docs/memberN/`.
 
@@ -39,5 +39,5 @@ Test design for each area is in `docs/memberN/`.
 
 - Student ID: exactly 8 digits, like `20231234`
 - Course code: 3 uppercase letters then 3 digits, like `SWE431`
-- Null or missing input throws `IllegalArgumentException`
+- Null or missing input throws `IllegalArgumentException` (exception: `EligibilityService.isEligible` returns `false` instead)
 - A rule broken during registration (full course, not enrolled, and so on) throws `RegistrationException`
